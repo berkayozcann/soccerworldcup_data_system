@@ -13,5 +13,7 @@
     };
     
     void readGoalsData(struct Goal **goals, int *numGoals);
-
+    void findGoalsByName(struct Goal *goals, int size, char* name);
+    void printGoal (struct Goal goal);
+    
 #endif

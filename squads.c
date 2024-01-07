@@ -45,15 +45,15 @@ void readSquadsData(struct Squad **squads, int *numSquads) {
             exit(EXIT_FAILURE);
             }
         }                                  
-        printf("%d %s %s %d %s %s %s %s\n", 
-               (*squads)[*numSquads].year,
-               (*squads)[*numSquads].hostCountry, 
-               (*squads)[*numSquads].country,
-               (*squads)[*numSquads].jerseyNumber, 
-               (*squads)[*numSquads].position,
-               (*squads)[*numSquads].name, 
-               (*squads)[*numSquads].clubName,
-               (*squads)[*numSquads].clubCountry);
+//        printf("%d %s %s %d %s %s %s %s\n", 
+//               (*squads)[*numSquads].year,
+//               (*squads)[*numSquads].hostCountry, 
+//               (*squads)[*numSquads].country,
+//               (*squads)[*numSquads].jerseyNumber, 
+//               (*squads)[*numSquads].position,
+//               (*squads)[*numSquads].name, 
+//               (*squads)[*numSquads].clubName,
+//               (*squads)[*numSquads].clubCountry);
 
         
         (*numSquads)++;
@@ -69,8 +69,60 @@ void readSquadsData(struct Squad **squads, int *numSquads) {
    fclose(file);
  }       
 
-    
+void printSquadByYearCountry(struct Squad *squads, int size, int year, char *country){
+    for (int i = 0; i < size; i++) {
+        // Check if the current squad member matches the criteria
+        if (squads[i].year == year && strcmp(squads[i].country, country) == 0) {
+            // Print information about the player
+            printf("%s Position:%s Club:%s\n", squads[i].name, squads[i].position, squads[i].clubName);
+        }
+       
+    }
+}
+
+
+int findNumberOfPlayers(struct Squad *squads,  int size, int year, char *country){
+
+    int count = 0;
+    for (int i = 0; i < size; i++) {
+        // Check if the current squad member matches the criteria
+        if (squads[i].year == year && strcmp(squads[i].country, country) == 0) {
+            count++;            
+        }
+    }
+
+    return count;
+}
+
+void findPlayerByName(struct Squad *squads,  int size, char *name){
+    int playerFound = 0;
+    for (int i = 0; i < size; i++) {
+        // Check if the current squad member matches the criteria
+        if (strcmp(squads[i].name, name) == 0) {
+            playerFound = 1;
+            printf("%s Year:%d Country:%s Position:%s Club:%s\n", squads[i].name ,squads[i].year, squads[i].country, squads[i].position, squads[i].clubName);
+        }
+    }
+    if (!playerFound)
+        printf("\nPlayer not found!");
+
+}
         
+void printPlayer(struct Squad player){
+
+    printf(" %d %s %s %d %s %s %s %s\n", 
+        player.year,
+        player.hostCountry, 
+        player.country,
+        player.jerseyNumber, 
+        player.position,
+        player.name, 
+        player.clubName,
+        player.clubCountry);
+}     
+        
+
+
         
  
     
